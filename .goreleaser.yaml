@@ -1,0 +1,76 @@
+version: 1
+
+project_name: avtr
+
+release:
+  # If a release is re-run, GoReleaser will replace the existing artifacts instead of failing
+  replace_existing_artifacts: true
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: avtr-build
+    main: ./main.go
+    binary: avtr
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+
+# Builds .deb and .rpm packages for Linux package managers (APT/DNF)
+nfpms:
+  - file_name_template: "{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+    homepage: https://github.com/Jayakrishna20/file-converter
+    description: "Avatar: A powerful CLI tool for PDF and Image manipulations"
+    maintainer: "Jayakrishna20"
+    license: MIT
+    vendor: "Jayakrishna20"
+    formats:
+      - deb
+      - rpm
+
+# Automatically generates and pushes Homebrew formulas
+brews:
+  - name: avtr
+    repository:
+      owner: Jayakrishna20
+      name: homebrew-file-converter # 👈 You need to create this empty repo on GitHub!
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}" # 👈 Define this in GitHub Secrets
+    directory: Formula
+    homepage: https://github.com/Jayakrishna20/file-converter
+    description: "Avatar: A powerful CLI tool for PDF and Image manipulations"
+    license: MIT
+    test: |
+      system "#{bin}/avtr --version"
+
+# Automatically generates Winget manifests
+winget:
+  - name: avtr
+    publisher: Jayakrishna20
+    homepage: https://github.com/Jayakrishna20/file-converter
+    description: "Avatar: A powerful CLI tool for PDF and Image manipulations"
+    license: MIT
+    short_description: "PDF/Image CLI tool"
+    repository:
+      owner: Jayakrishna20
+      name: winget-pkgs # 👈 You'll need to manually submit the generated manifest to Microsoft
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
