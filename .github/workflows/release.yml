@@ -39,11 +39,11 @@ jobs:
           
           # Tell Cloudsmith to upload the freshly built files
           for file in dist/*.deb; do
-            cloudsmith push deb jayakrishna20/file-converter/ubuntu/any-version "$file"
-            cloudsmith push deb jayakrishna20/file-converter/debian/any-version "$file"
+            cloudsmith push deb jayakrishna20/file-converter/ubuntu/any-version "$file" --republish
+            cloudsmith push deb jayakrishna20/file-converter/debian/any-version "$file" --republish
           done
           for file in dist/*.rpm; do
-            cloudsmith push rpm jayakrishna20/file-converter/fedora/any-version "$file"
+            cloudsmith push rpm jayakrishna20/file-converter/fedora/any-version "$file" --republish
           done
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
