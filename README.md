@@ -10,7 +10,7 @@
 
 Avatar (`avtr`) is a lightning-fast ⚡, highly capable command-line interface (CLI) tool designed for manipulating PDFs and images right from your terminal. It offers an intuitive, richly colored console experience 🎨 with detailed progress updates while gracefully handling your files!
 
-📄 **About page:** [jayakrishna20.github.io/file-converter](https://jayakrishna20.github.io/file-converter/)
+📄 **About page:** [CLick Here](https://jayakrishna20.github.io/avatar=cli/)
 
 <br>
 
