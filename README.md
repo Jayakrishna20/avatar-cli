@@ -5,9 +5,12 @@
 <p align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/Jayakrishna20/file-converter/release.yml?style=for-the-badge&label=BUILD" />
   <img src="https://img.shields.io/github/go-mod/go-version/Jayakrishna20/file-converter?style=for-the-badge&label=GO+VERSION" />
+  <img src="https://img.shields.io/github/actions/workflow/status/Jayakrishna20/file-converter/pages.yml?style=for-the-badge&label=PAGES&color=blue" />
 </p>
 
 Avatar (`avtr`) is a lightning-fast ⚡, highly capable command-line interface (CLI) tool designed for manipulating PDFs and images right from your terminal. It offers an intuitive, richly colored console experience 🎨 with detailed progress updates while gracefully handling your files!
+
+📄 **About page:** [jayakrishna20.github.io/file-converter](https://jayakrishna20.github.io/file-converter/)
 
 <br>
 
